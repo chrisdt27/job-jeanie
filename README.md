@@ -1,1 +1,1 @@
-# job-jeanie
+# Job Jeanie MVP
