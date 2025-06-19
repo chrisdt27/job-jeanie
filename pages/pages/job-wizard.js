@@ -15,6 +15,11 @@ export default function JobWizard() {
     setJob({ ...job, [field]: value });
   };
 
+  const handleSubmit = () => {
+    alert(`✅ Job submitted!\n\n${JSON.stringify(job, null, 2)}`);
+    // In production, you'd send `job` to a backend via API
+  };
+
   return (
     <main style={{ padding: '2rem', fontFamily: 'Arial, sans-serif', maxWidth: 600, margin: 'auto' }}>
       <h1>Job Wizard — Step {step}</h1>
@@ -84,6 +89,13 @@ export default function JobWizard() {
         </>
       )}
 
+      {step === 4 && (
+        <div style={{ background: '#f9f9f9', padding: '1rem', borderRadius: '8px' }}>
+          <h3>Review Your Job Details:</h3>
+          <pre>{JSON.stringify(job, null, 2)}</pre>
+        </div>
+      )}
+
       <div style={{ marginTop: '2rem' }}>
         {step > 1 && (
           <button onClick={() => setStep(step - 1)} style={{ marginRight: '1rem' }}>
@@ -95,7 +107,11 @@ export default function JobWizard() {
             Next
           </button>
         )}
-        {step === 4 && <button onClick={() => alert('Job submitted!')}>Submit</button>}
+        {step === 4 && (
+          <button onClick={handleSubmit}>
+            Submit
+          </button>
+        )}
       </div>
     </main>
   );
