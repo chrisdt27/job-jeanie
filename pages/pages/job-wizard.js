@@ -61,6 +61,29 @@ export default function JobWizard() {
         </>
       )}
 
+      {step === 3 && (
+        <>
+          <label>Budget (USD):</label>
+          <input
+            type="number"
+            value={job.budget}
+            onChange={(e) => updateField('budget', e.target.value)}
+            style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
+            placeholder="e.g., 150"
+          />
+
+          <label>
+            <input
+              type="checkbox"
+              checked={job.urgency}
+              onChange={(e) => updateField('urgency', e.target.checked)}
+              style={{ marginRight: '8px' }}
+            />
+            This job is urgent
+          </label>
+        </>
+      )}
+
       <div style={{ marginTop: '2rem' }}>
         {step > 1 && (
           <button onClick={() => setStep(step - 1)} style={{ marginRight: '1rem' }}>
@@ -77,4 +100,3 @@ export default function JobWizard() {
     </main>
   );
 }
-
