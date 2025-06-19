@@ -2,11 +2,43 @@ import { useState } from 'react';
 
 export default function JobWizard() {
   const [step, setStep] = useState(1);
+  const [job, setJob] = useState({
+    title: '',
+    description: '',
+    location: '',
+    date: '',
+    budget: '',
+    urgency: false,
+  });
+
+  const updateField = (field, value) => {
+    setJob({ ...job, [field]: value });
+  };
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'Arial, sans-serif' }}>
+    <main style={{ padding: '2rem', fontFamily: 'Arial, sans-serif', maxWidth: 600, margin: 'auto' }}>
       <h1>Job Wizard — Step {step}</h1>
-      <p>This is where Jeanie helps post a job!</p>
+
+      {step === 1 && (
+        <>
+          <label>Job Title:</label>
+          <input
+            type="text"
+            value={job.title}
+            onChange={(e) => updateField('title', e.target.value)}
+            style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
+            placeholder="e.g., Fix leaky faucet"
+          />
+
+          <label>Description:</label>
+          <textarea
+            value={job.description}
+            onChange={(e) => updateField('description', e.target.value)}
+            style={{ width: '100%', height: '80px', padding: '8px' }}
+            placeholder="Brief description of the task"
+          />
+        </>
+      )}
 
       <div style={{ marginTop: '2rem' }}>
         {step > 1 && (
