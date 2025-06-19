@@ -40,6 +40,27 @@ export default function JobWizard() {
         </>
       )}
 
+      {step === 2 && (
+        <>
+          <label>Location:</label>
+          <input
+            type="text"
+            value={job.location}
+            onChange={(e) => updateField('location', e.target.value)}
+            style={{ width: '100%', padding: '8px', marginBottom: '1rem' }}
+            placeholder="Zip code or city"
+          />
+
+          <label>Preferred Date:</label>
+          <input
+            type="date"
+            value={job.date}
+            onChange={(e) => updateField('date', e.target.value)}
+            style={{ width: '100%', padding: '8px' }}
+          />
+        </>
+      )}
+
       <div style={{ marginTop: '2rem' }}>
         {step > 1 && (
           <button onClick={() => setStep(step - 1)} style={{ marginRight: '1rem' }}>
@@ -56,3 +77,4 @@ export default function JobWizard() {
     </main>
   );
 }
+
